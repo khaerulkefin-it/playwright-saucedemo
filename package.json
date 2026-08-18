@@ -1,0 +1,29 @@
+{
+  "name": "playwright-automation-framework",
+  "version": "1.0.0",
+  "description": "Enterprise-grade end-to-end test automation framework powered by Playwright",
+  "scripts": {
+    "test": "playwright test",
+    "test:debug": "playwright test --headed --debug",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:failed": "playwright test --last-failed",
+    "report": "playwright show-report"
+  },
+  "engines": {
+    "node": ">=20.0.0 <25",
+    "npm": ">=10.0.0"
+  },
+  "keywords": [],
+  "author": "Khaerul",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
