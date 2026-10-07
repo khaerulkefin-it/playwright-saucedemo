@@ -20,6 +20,8 @@ test.describe("Data Driven - Login  by Role", () => {
         await expect(page).toHaveURL("/inventory.html");
         await expect(page.getByTestId("title")).toBeVisible();
         await expect(page.getByTestId("title")).toHaveText("Products");
+      } else {
+        await expect(login.errorMsg).toBeVisible();
       }
     });
   }
