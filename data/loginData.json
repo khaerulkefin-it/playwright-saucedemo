@@ -5,8 +5,33 @@
     "expected": "success"
   },
   {
+    "username": "invalid_user",
+    "password": "secret_sauce",
+    "expected": "invalid_username"
+  },
+  {
     "username": "standard_user",
-    "password": "secret_saucet",
-    "expected": "fail"
+    "password": "invalid_password",
+    "expected": "invalid_password"
+  },
+  {
+    "username": "",
+    "password": "invalid_password",
+    "expected": "null_user"
+  },
+  {
+    "username": "standard_user",
+    "password": "",
+    "expected": "null_password"
+  },
+  {
+    "username": "",
+    "password": "",
+    "expected": "null"
+  },
+  {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expected": "locked"
   }
 ]
