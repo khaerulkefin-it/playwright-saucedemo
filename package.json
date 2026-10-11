@@ -4,7 +4,9 @@
   "description": "Enterprise-grade end-to-end test automation framework powered by Playwright",
   "scripts": {
     "test": "playwright test",
+    "test:login": "playwright test tests/auth/login.spec.js --no-deps",
     "test:debug": "playwright test --headed --debug",
+    "test:auth": "playwright test --project=setup",
     "test:chromium": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
@@ -18,7 +20,7 @@
   "keywords": [],
   "author": "Khaerul",
   "license": "UNLICENSED",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0"
