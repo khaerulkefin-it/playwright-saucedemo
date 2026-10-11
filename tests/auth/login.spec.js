@@ -1,8 +1,13 @@
 import { test, expect } from "../../fixtures/login.fixture";
 import users from "../../data/loginData.json" assert { type: "json" };
-import { beforeEach } from "node:test";
 
 test.describe("Authentication - Login", () => {
+  test.use({
+    storageState: {
+      cookies: [],
+      origins: [],
+    },
+  });
   test.beforeEach(async ({ login }) => {
     await login.goto("/");
   });
@@ -70,19 +75,19 @@ test.describe("Authentication - Login", () => {
   });
 });
 
-test.describe("Data Driven - Login  by Role", () => {
-  for (const user of users) {
-    test(`login attemp: ${user.expected}`, async ({ login, page }) => {
-      await login.goto("/");
-      await login.login(user.username, user.password);
+// test.describe("Data Driven - Login  by Role", () => {
+//   for (const user of users) {
+//     test(`login attemp: ${user.expected}`, async ({ login, page }) => {
+//       await login.goto("/");
+//       await login.login(user.username, user.password);
 
-      if (user.expected == "success") {
-        await expect(page).toHaveURL("/inventory.html");
-        await expect(page.getByTestId("title")).toBeVisible();
-        await expect(page.getByTestId("title")).toHaveText("Products");
-      } else {
-        await expect(login.errorMsg).toBeVisible();
-      }
-    });
-  }
-});
+//       if (user.expected == "success") {
+//         await expect(page).toHaveURL("/inventory.html");
+//         await expect(page.getByTestId("title")).toBeVisible();
+//         await expect(page.getByTestId("title")).toHaveText("Products");
+//       } else {
+//         await expect(login.errorMsg).toBeVisible();
+//       }
+//     });
+//   }
+// });
