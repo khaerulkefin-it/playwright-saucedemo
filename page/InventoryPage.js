@@ -1,12 +1,12 @@
-class inventoryPage {
+class InventoryPage {
   constructor(page) {
     this.page = page;
 
-    this.inventoryItem = page.getByTestID("inventory-item");
-    this.invetoryItemName = page.getByTestID("inventory-item-name");
-    this.inventoryItemPrice = page.getByTestID("inventory-item-price");
+    this.inventoryItem = page.getByTestId("inventory-item");
+    this.inventoryItemName = page.getByTestId("inventory-item-name").all();
+    this.inventoryItemPrice = page.getByTestId("inventory-item-price");
     this.btnAddToCart = page.getByRole("button", { name: "Add to cart" });
   }
 }
 
-export default inventoryPage;
+export default InventoryPage;

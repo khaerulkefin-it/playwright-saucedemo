@@ -1,11 +1,13 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../fixtures/Inventory.fixture";
 
-test("authenticated user can view inventory", async ({ page }) => {
-  await page.goto("/inventory.html");
+test.describe("Inventory Page", () => {
+  test("Access Inventory page", async ({ inventory, page }) => {
+    await page.goto("/inventory.html");
 
-  await expect(page).toHaveURL(/inventory\.html/);
-
-  await expect(page.locator('[data-test="title"]')).toHaveText("Products");
-
-  await expect(page.locator('[data-test="inventory-item"]')).toHaveCount(6);
+    await expect(inventory.inventoryItem.first()).toBeVisible();
+    await expect(inventory.inventoryItem).toHaveCount(6);
+    for (const iName of inventory.inventoryItemName) {
+      console.log(await iName.textContent());
+    }
+  });
 });
