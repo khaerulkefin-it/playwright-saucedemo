@@ -8,9 +8,10 @@ test.describe("Authentication - Login", () => {
       origins: [],
     },
   });
-  test.beforeEach(async ({ login }) => {
-    await login.goto("/");
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
   });
+
   test("Login with Valid credentials", async ({ login, page }) => {
     await login.login("standard_user", "secret_sauce");
 
