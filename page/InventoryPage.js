@@ -1,10 +1,12 @@
 import { expect } from "@playwright/test";
 import { HeaderComponent } from "../components/header.component";
+import { CartPage } from "./CartPage";
 
 export class InventoryPage {
   constructor(page) {
     this.page = page;
     this.header = new HeaderComponent(page);
+    this.cart = new CartPage(page);
 
     this.allItem = page.getByTestId("inventory-item");
     this.itemName = page.getByTestId("inventory-item-name");
