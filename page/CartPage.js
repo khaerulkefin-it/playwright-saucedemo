@@ -4,7 +4,6 @@ import { HeaderComponent } from "../components/header.component";
 export class CartPage {
   constructor(page) {
     this.page = page;
-
     this.header = new HeaderComponent(page);
 
     this.allItem = page.getByTestId("inventory-item");
@@ -14,7 +13,7 @@ export class CartPage {
     this.itemQty = page.getByTestId("item-quantity");
     this.btnRemove = page.getByRole("button", { name: "Remove" });
     this.conShop = page.getByRole("button", { name: "Continue Shopping" });
-    this.checkout = page.getByRole("button", { name: "Checkout" });
+    this.btnCo = page.getByRole("button", { name: "Checkout" });
   }
 
   async removeFromCart(item) {
