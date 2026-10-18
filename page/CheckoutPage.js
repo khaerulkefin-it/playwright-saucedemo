@@ -18,6 +18,12 @@ export class CheckoutPage {
     this.itemName = page.getByTestId("inventory-item-name");
     this.itemDesc = page.getByTestId("inventory-item-desc");
     this.itemPrice = page.getByTestId("inventory-item-price");
+
+    this.totItem = page.getByTestId("subtotal-label");
+    this.totTax = page.getByTestId("tax-label");
+    this.totPrice = page.getByTestId("total-label");
+
+    this.imgCo = page.getByRole("img", { name: "Pony Express" });
   }
 
   async checkout(fName, lName, zip) {
@@ -25,5 +31,14 @@ export class CheckoutPage {
     await this.lastName.fill(lName);
     await this.postalCode.fill(zip);
     await this.btnContinue.click();
+  }
+
+  async expectTaxPrice() {
+    const tax = Number((await this.totItem.innerText()).split("$")[1]);
+    const totalPrice = Number((tax * 0.08).toFixed(2));
+
+    await expect(Number((await this.totTax.innerText()).split("$")[1])).toBe(
+      totalPrice,
+    );
   }
 }
