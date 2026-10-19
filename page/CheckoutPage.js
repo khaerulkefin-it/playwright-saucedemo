@@ -33,6 +33,18 @@ export class CheckoutPage {
     await this.btnContinue.click();
   }
 
+  async expectTotalItem() {
+    let total = 0;
+    for (const allPrice of await this.allItem.locator(this.itemPrice).all()) {
+      const iPrice = Number((await allPrice.innerText()).split("$")[1]);
+      total += iPrice;
+    }
+
+    await expect(total).toBe(
+      Number((await this.totItem.innerText()).split("$")[1]),
+    );
+  }
+
   async expectTaxPrice() {
     const tax = Number((await this.totItem.innerText()).split("$")[1]);
     const totalPrice = Number((tax * 0.08).toFixed(2));
@@ -40,5 +52,12 @@ export class CheckoutPage {
     await expect(Number((await this.totTax.innerText()).split("$")[1])).toBe(
       totalPrice,
     );
+  }
+
+  async expectFinalTotal() {
+    const item = Number((await this.totItem.innerText()).split("$")[1]);
+    const tax = Number((await this.totTax.innerText()).split("$")[1]);
+    const price = Number((await this.totPrice.innerText()).split("$")[1]);
+    await expect(Number((item + tax).toFixed(2))).toBe(price);
   }
 }
